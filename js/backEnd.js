@@ -51,9 +51,27 @@ function bindCountryInfo(country) {
 
 }
 
+function bindCountryFacts(country) {
+  let population = document.getElementById("population")
+  population.innerHTML = country.population.toLocaleString("en-US");
+
+  let continent = document.getElementById("continent")
+  continent.innerHTML = country.region
+
+  let startOfWeek = document.getElementById("start-of-week")
+  startOfWeek.innerHTML = country.startOfWeek.charAt(0).toUpperCase() + country.startOfWeek.slice(1)
+
+  let timeZone = document.getElementById("time-zone")
+  timeZone.innerHTML = country.timezones[0]
+
+  let capital = document.getElementById("capital")
+  capital.innerHTML = country.capital[0]
+}
+
 async function bindCountryData(name) {
   let country = await getCountry(name)
   bindCountryInfo(country[0])
+  bindCountryFacts(country[0])
 }
 
 //---------------------------Driving Code----------------------------------------------
