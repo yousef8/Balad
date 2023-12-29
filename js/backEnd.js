@@ -1,3 +1,5 @@
+import { worldNewsKey } from "./apiKeys.js"
+
 async function populateCountries() {
   let selectOpt = document.getElementById("select-options")
 
@@ -68,10 +70,47 @@ function bindCountryFacts(country) {
   capital.innerHTML = country.capital[0]
 }
 
+function addNews(news) {
+  let newsRow = document.getElementById("news-row")
+  newsRow.innerHTML += `
+        <div class="col-md-3 col-sm-6">
+          <div class="news-box">
+            <div class="new-thumb"> <img src="${news.image}" alt="">
+            </div>
+            <div class="new-txt">
+              <ul class="news-meta">
+                <li>${news.publish_date}</li>
+              </ul>
+              <h6><a href="${news.url}">${news.title}</a></h6>
+              <p>${news.text.slice(0, 101)}...</p>
+            </div>
+            <div class="news-box-f"> <img
+                src="https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png"
+                alt="">${news.author}<a href="${news.url}"><i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>`
+
+}
+
+async function bindCountryNews(country) {
+  let res = await fetch(`https://api.worldnewsapi.com/search-news?api-key=${worldNewsKey}&source-countries=${country.cca2}`)
+  res = await res.json()
+  let news = res.news
+
+  let newsRow = document.getElementById("news-row")
+  newsRow.innerHTML = ``
+  news.forEach((e) => {
+    addNews(e)
+  })
+
+}
+
 async function bindCountryData(name) {
   let country = await getCountry(name)
   bindCountryInfo(country[0])
   bindCountryFacts(country[0])
+  await bindCountryNews(country[0])
 }
 
 //---------------------------Driving Code----------------------------------------------
