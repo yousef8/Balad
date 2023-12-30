@@ -441,16 +441,16 @@
       <div class="row">
         <div class="col-md-12 contact-form m80 my-5">
           <h3 class="stitle text-center">Get in Touch</h3>
-          <form>
+          <form id="contact-form">
             <ul class="row">
               <li class="col-md-6">
-                <input type="text" placeholder="Full Name" required>
+                <input type="text" placeholder="Full Name" name="from_name" required>
               </li>
               <li class="col-md-6">
-                <input type="text" placeholder="Enter Email" required>
+                <input type="text" placeholder="Enter Email" name="from_email" required>
               </li>
               <li class="col-md-12">
-                <textarea placeholder="Write Message"></textarea>
+                <textarea placeholder="Write Message" name="message"></textarea>
               </li>
               <li class="col-md-12">
                 <input type="submit" value="Send Message">
@@ -507,6 +507,7 @@
   <script type="text/javascript" src="js/rev-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
   <script type="text/javascript" src="js/rev-slider/js/extensions/revolution.extension.video.min.js"></script>
   <!-- Actual Logic -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="module" src="./js/backEnd.js"></script>
 </body>
 

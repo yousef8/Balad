@@ -1,4 +1,8 @@
-import { worldNewsKey } from "./apiKeys.js"
+import { worldNewsKey, emailKey, serviceId, templateId } from "./apiKeys.js"
+
+(function () {
+  emailjs.init(emailKey);
+})();
 
 async function populateCountries() {
   let selectOpt = document.getElementById("select-options")
@@ -118,3 +122,15 @@ populateCountries()
 
 let selectBox = document.getElementById("select-box")
 selectBox.addEventListener("change", (ev) => bindCountryData(ev.target.value))
+
+let contactForm = document.getElementById("contact-form")
+contactForm.addEventListener("submit", (ev) => {
+  ev.preventDefault();
+  emailjs.sendForm(serviceId, templateId, ev.target)
+    .then(function (res) {
+      console.log('SUCCESS!', res.status, res.text);
+    }, function (error) {
+      console.log('FAILED...', error);
+    });
+  ev.target.reset()
+})
