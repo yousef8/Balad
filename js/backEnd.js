@@ -150,9 +150,11 @@ contactForm.addEventListener("submit", (ev) => {
   ev.preventDefault();
   emailjs.sendForm(serviceId, templateId, ev.target)
     .then(function (res) {
-      console.log('SUCCESS!', res.status, res.text);
+      // console.log('SUCCESS!', res.status, res.text);
+      alert("Email Sent Successfully !!!")
     }, function (error) {
-      console.log('FAILED...', error);
+      // console.log('FAILED...', error);
+      alert("Couldn't Sent Email because of : " + error)
     });
   ev.target.reset()
 })
