@@ -74,6 +74,14 @@ function bindCountryFacts(country) {
   capital.innerHTML = country.capital[0]
 }
 
+function bindCountryMap(country) {
+  let mapIframe = document.getElementById("map-iframe");
+  mapIframe.src = `https://www.google.com/maps?q=${country.name.common}&hl=en&z=6&output=embed`
+
+  let mapExternalLink = document.getElementById("external-map-link")
+  mapExternalLink.href = `https://www.google.com/maps?q=${country.name.common}&hl=en&z=6`
+}
+
 function addNews(news) {
   let newsRow = document.getElementById("news-row")
   newsRow.innerHTML += `
@@ -114,6 +122,7 @@ async function bindCountryData(name) {
   let country = await getCountry(name)
   bindCountryInfo(country[0])
   bindCountryFacts(country[0])
+  bindCountryMap(country[0])
   await bindCountryNews(country[0])
 }
 
