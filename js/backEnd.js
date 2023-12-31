@@ -121,9 +121,22 @@ async function bindCountryNews(country) {
 async function bindCountryData(name) {
   let country = await getCountry(name)
   bindCountryInfo(country[0])
+  let infoSec = document.getElementById("info-section")
+  infoSec.hidden = false;
+
   bindCountryFacts(country[0])
+  let factsSec = document.getElementById("facts-section")
+  factsSec.hidden = false;
+
   bindCountryMap(country[0])
+  let mapSec = document.getElementById("map-section")
+  mapSec.hidden = false;
+
   await bindCountryNews(country[0])
+  let newsSec = document.getElementById("news-section")
+  newsSec.hidden = false;
+  let formSec = document.getElementById("form-section")
+  formSec.hidden = false;
 }
 
 //---------------------------Driving Code----------------------------------------------
